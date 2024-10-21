@@ -1,0 +1,113 @@
+<%- include('partials/header') %>
+
+<div class="w-full min-h-screen bg-zinc-300 px-16 max-[768px]:px-8 max-[425px]:px-4">
+  <nav class="w-full pt-10 pb-16 flex items-center justify-between max-[768px]:pb-10 max-[425px]:pt-8 max-[425px]:flex-col max-[425px]:items-start max-[425px]:gap-4 max-[425px]:pb-8">
+    <div>
+      <a class="text-2xl font-semibold max-[768px]:text-xl" href="">KhataBook</a>
+    </div>
+    <div class="flex gap-5">
+      <a
+        class="px-4 py-2 bg-blue-600 text-white text-base font-semibold rounded-md hover:bg-blue-700 ease-in-out duration-300 max-[768px]:text-sm max-[768px]:px-[.7rem] max-[768px]:py-[.3rem] max-[375px]:py-2"
+        href="/createnewhisaab"
+      >
+        Create New Hisaab <i class="ri-add-line"></i>
+      </a>
+      <a
+        class="px-4 py-2 bg-red-600 text-white text-base font-semibold rounded-md hover:bg-red-700 ease-in-out duration-300 max-[768px]:text-sm max-[768px]:px-[.7rem] max-[768px]:py-[.3rem] max-[375px]:py-2"
+        href="/logout"
+      >
+        Logout <i class="ri-logout-circle-r-line"></i>
+      </a>
+    </div>
+  </nav>
+
+  <div class="w-full flex flex-col gap-8">
+    <div class="flex gap-5 max-[768px]:flex-wrap ">
+      <div
+        class="h-10 w-fit flex items-center px-6 py-2 bg-zinc-200 text-zinc-600 font-semibold  rounded-md relative transition-all duration-500 hover:bg-zinc-200/60 cursor-pointer max-[768px]:text-sm max-[768px]:px-3 max-[768px]:py-0"
+      >
+        <input
+          type="text"
+          id="date"
+          name="date"
+          placeholder="Sort by Date"
+          class="w-[116px] focus:w-[124px] outline-none bg-transparent placeholder:text-zinc-600 peer"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')"
+        />
+        <i
+          class="ri-calendar-todo-fill peer-focus:hidden absolute right-4 text-zinc-600 -translate-x-[6px]"
+        ></i>
+      </div>
+
+      <div
+        class="h-10 w-fit flex items-center gap-4 px-6 py-2 bg-zinc-200 text-zinc-600 font-semibold  rounded-md relative hover:bg-zinc-200/60 cursor-pointer max-[768px]:text-sm max-[768px]:px-3 max-[768px]:py-0"
+      >
+        <select name="order" id="order" class="bg-transparent outline-none">
+          <option value="new">Newest First</option>
+          <option value="old">Oldest First</option>
+        </select>
+
+      </div>
+
+      <div
+      class="h-10 w-fit flex items-center gap-2 px-6 py-2 bg-zinc-200 text-zinc-600 font-semibold rounded-md relative hover:bg-zinc-200/60 max-[768px]:text-sm max-[768px]:px-3 max-[768px]:py-0">
+      Total Hisaab <i class="ri-arrow-right-line"></i> <%= hisaabs.length %>
+    </div>
+    </div>
+
+    <div id="allHisaab" class="w-full flex flex-wrap gap-4 max-[768px]:justify-center">  
+
+      <% if(hisaabs.length > 0){%>
+
+        <% hisaabs.forEach(hisaab=>{ %>
+  
+        <div
+          class="hisaab min-w-[30%] bg-zinc-200 px-4 py-2 pb-4 flex flex-col gap-4 rounded-md cursor-pointer hover:bg-zinc-200/50 ease-linear duration-200 max-[768px]:gap-2 max-[425px]:max-w-[45%]">
+          <div class="hisaab-top flex items-center justify-between max-[768px]:flex-col  max-[768px]:items-start max-[768px]:gap-2">
+            <div id="h-top-left" class="flex items-center gap-4 max-[375px]:w-full">
+              <span
+                class="px-2 py-1 bg-green-500 text-white font-medium rounded-md flex items-center gap-1 max-[768px]:text-sm "
+              >
+                <i class="font-medium ri-check-fill"></i>
+                Available</span
+              >
+              <span class="px-4 py-1 bg-zinc-300 rounded-md flex items-center justify-center max-[768px]:text-sm max-[768px]:px-3 max-[375px]:px-1">
+                <i class="font-medium ri-eye-off-line"></i>
+              </span>
+            </div>
+  
+            <div id="h-top-right" class="max-[768px]:text-sm">
+              <span class="font-medium ">Created on</span>
+              <span class="font-medium"
+                ><%= hisaab.created.toLocaleDateString('en-GB').replace(/\//g,
+                '-') %></span
+              >
+            </div>
+          </div>
+  
+          <div class="hisaab-content">
+            <p class="font-semibold capitalize"><%= hisaab.title %></p>
+          </div>
+  
+          <a
+            href="/viewhisaab<%= hisaab._id %>"
+            class="text-sm text-zinc-600 hover:text-blue-600 hover:font-semibold ease-in-out duration-300"
+          >
+            view hisaab <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+  
+        <% }) %>
+
+      <%}else{%>
+        <div class="w-full flex items-end justify-center h-[26vh]">
+          <h3 class="pl-1 text-xl text-zinc-500 text-center capitalize font-medium ">Hisaabs Not Exest Please Create New Hisaab..</h3>
+        </div>
+      <%} %>
+
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

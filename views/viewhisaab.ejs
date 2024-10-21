@@ -1,0 +1,66 @@
+<%- include ('partials/header') %>
+
+<div class="w-full h-screen bg-zinc-300 px-16 max-[768px]:px-8 max-[425px]:px-4">
+    <nav class="w-full pt-8 pb-16 flex items-center justify-between max-[768px]:pb-10 max-[425px]:pt-8">
+        <div>
+          <a class="text-2xl font-semibold max-[768px]:text-xl" href="">KhataBook</a>
+        </div>
+        <div class="flex gap-5">
+          <a
+          class="px-4 py-2 bg-blue-600 text-white text-base capitalize font-semibold rounded-md
+          hover:bg-blue-700 ease-in-out duration-300 max-[768px]:text-sm max-[768px]:px-3 max-[425px]:text-xs max-[425px]:px-2 max-[425px]:py-2" 
+          href="/">
+          <i class="ri-arrow-left-line"></i> back to home
+          </a>
+          <a
+          class="px-4 py-2 bg-red-600 text-white text-base capitalize font-semibold rounded-md
+          hover:bg-red-700 ease-in-out duration-300 max-[768px]:text-sm max-[768px]:px-3 max-[425px]:text-xs max-[425px]:px-2 max-[425px]:py-2" 
+          href="/">
+          <i class="ri-pencil-fill"></i> Edit
+          </a>
+        </div>
+    </nav>
+
+    <div id="viewhisaab" class="w-1/2 max-h-[70vh] bg-zinc-200 p-4 flex flex-col gap-4 rounded-md overflow-y-scroll max-[768px]:w-[85%] max-[425px]:w-full">
+
+
+        <div class="flex flex-col gap-2">
+            <div  id="h-top-left" class="flex items-center gap-4 max-[768px]:text-sm max-[425px]:text-sx">
+              <span
+              class="inline-block px-2 py-1 bg-green-500 text-white font-medium rounded-md">
+                <i class="font-medium ri-check-fill"></i>
+                Available</span>
+              <span
+              class="px-4 py-1 bg-zinc-300 rounded-md cursor-pointer max-[425px]:px-2">
+                <i class="font-medium ri-eye-off-line"></i>
+              </span>
+
+              <a
+              href="/deletehisaab/<%= hisaabs._id %>"
+              class="inline-block px-2 py-1 bg-red-500 text-white font-medium rounded-md cursor-pointer">
+              Delete  <i class="ri-delete-bin-line"></i>
+              </a>
+            </div>
+    
+            <div id="h-top-right">
+              <span class="font-medium max-[768px]:text-sm">Created on</span>
+              <span class="font-medium max-[768px]:text-sm"><%= hisaabs.created.toLocaleDateString('en-GB').replace(/\//g, '-') %></span>
+            </div>
+        </div>
+
+        <div  class="flex flex-col gap-4">
+            <div>
+                <span class="text-sm font-bold">Title:</span>
+                <h1 class="text-lg capitalize font-medium max-[768px]:text-base"><%= hisaabs.title %></h1>
+            </div>
+
+            <div class="w-full h-fit">
+                <span class="text-sm font-bold">Description</span>
+                <textarea class="block w-full h-[35vh] bg-transparent outline-none border-[0px] text-base capitalize font-medium max-[768px]:text-base"><%= hisaabs.desc %></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ('partials/footer') %>

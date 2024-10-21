@@ -1,0 +1,22 @@
+<%- include ('partials/header') %>
+
+<div class="w-screen h-screen bg-zinc-300 flex flex-col items-center justify-center gap-4">
+    <h1 class="text-lg font-semibold">SingIn Your Account</h1>
+    <form action="/signin" method="post"
+    class="flex flex-col gap-2">
+        <input
+        class="px-4 py-2 rounded-md font-medium "
+        name="email" type="email" placeholder="Email">
+        <input
+        class="px-4 py-2 rounded-md font-medium "
+        name="password" type="text" placeholder="Password">
+        <input
+        class="px-4 py-2 rounded-md font-semibold text-white bg-red-600 cursor-pointer"
+        type="submit">
+        <a 
+        class="px-4 py-2 rounded-md font-semibold text-white bg-blue-600 cursor-pointer text-center"
+        href="/signup">SingUp</a>
+    </form>
+</div>
+
+<%- include ('partials/footer') %>
